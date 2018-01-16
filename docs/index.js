@@ -32,6 +32,7 @@ function feedback(event) {
 
   if (event.type=="drop") {
     received = event.dataTransfer.getData('text/plain');
+    event.preventDefault();
   }
 
   // now the actual feeding back
@@ -52,10 +53,22 @@ function feedback(event) {
 	}
 }
 
+function toggle(e) {
+  selected[e] = !selected[e];
+  localStorage.setItem("eventexpo", JSON.stringify(selected) );
+  console.log("stored", e, localStorage.eventexpo);
+}
+
+let selected = {};
+
 function createSwitches() {
+  if (localStorage.eventexpo) {
+    selected = JSON.parse(localStorage.eventexpo);
+  }
 	let str = "";
 	for (const event of events) {
-		 str+= `<label><input type="checkbox" id="x${event}"><p>${event} (<span id=x${event}count data-count=0>0</span>)</p></label>`
+    let checked = selected[event] ? 'checked' : '';
+		 str+= `<label><input type="checkbox" ${checked} onclick="toggle('${event}')" id="x${event}"><p>${event} (<span id=x${event}count data-count=0>0</span>)</p></label>`
 	}
 	window.switches.innerHTML+=str;
 }
