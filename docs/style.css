@@ -11,7 +11,7 @@ body {
   grid-template:
     " header     header header      header" auto
     " dragsource nope   nope    droptarget " 1fr
-    " switches     footer footer footer    " 70vh
+    " switches     main main main    " 60vh
     / 1fr 1fr 1fr 1fr ;
 
   height: 100vh;
@@ -20,8 +20,12 @@ body {
 
 table, td, th {
 	border: solid grey thin;
-	border-collapse: true;
+	border-collapse: collapse;
 	padding: 0.25em;
+}
+
+table {
+  width: 100%;
 }
 
 section {
@@ -29,6 +33,7 @@ section {
   background: lightgrey;
   text-align: center;
   font-size: 2vmin;
+  border-radius: 0.5vmin;
 }
 
 header {
@@ -36,8 +41,8 @@ header {
   grid-area: header;
 }
 
-footer {
-  grid-area: footer;
+main {
+  grid-area: main;
   overflow: scroll;
   font-size: 75%;
 }
@@ -64,11 +69,13 @@ footer {
 }
 
 #dragme {
-  margin: 1vmin;
+  margin: 1vmin auto;
   padding: 1vmin;
-  border-radius: 1vmin;
+  border-radius: 0.5vmin;
   border: solid black thin;
   box-shadow: 1vmin 1vmin 1vmin black;
+  width: 55%;
+  height: 54%;
 }
 
 input {
