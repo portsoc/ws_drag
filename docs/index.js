@@ -42,7 +42,7 @@ function feedback(event) {
 		window.fbk.insertBefore(tr, window.fbk.firstChild);
 		addCell(tr, time);
 		addCell(tr, event.type);
-		addCell(tr, event.srcElement.id);
+		addCell(tr, event.srcElement ? event.srcElement.id : "not supported");
 		addCell(tr, event.target.id);
 		addCell(tr, event.currentTarget.id);
 		addCell(tr, received);
