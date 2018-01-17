@@ -61,14 +61,18 @@ function toggle(e) {
 let selected = {};
 
 function createSwitches() {
-  if (localStorage.eventexpo) {
-    selected = JSON.parse(localStorage.eventexpo);
+  let str = "";
+  try {
+    if (localStorage.eventexpo) {
+      selected = JSON.parse(localStorage.eventexpo);
+    }
+  	for (const event of events) {
+      let checked = selected[event] ? 'checked' : '';
+  		 str+= `<label><input type="checkbox" ${checked} onclick="toggle('${event}')" id="x${event}"><p>${event} (<span id=x${event}count data-count=0>0</span>)</p></label>`
+  	}
+  } catch (e) {
+     str = "<p class=error>Hmmmm.  <code>localStorage</code> could not be accessed.  If you're on Safari, set <em>'Disable local file restrictions'</em> in the <em>Develop</em> menu to fix this security feature.</p>";
   }
-	let str = "";
-	for (const event of events) {
-    let checked = selected[event] ? 'checked' : '';
-		 str+= `<label><input type="checkbox" ${checked} onclick="toggle('${event}')" id="x${event}"><p>${event} (<span id=x${event}count data-count=0>0</span>)</p></label>`
-	}
 	window.switches.innerHTML+=str;
 }
 
