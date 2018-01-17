@@ -76,8 +76,19 @@ main {
   box-shadow: 1vmin 1vmin 1vmin black;
   width: 55%;
   height: 54%;
+  animation: hereiam 3s ease;
 }
 
 input {
 	margin-right: 0.5em;
+}
+
+
+@keyframes hereiam {
+  75% {transform: rotate(0deg);}
+  80% {transform: rotate(2deg);}
+  85% {transform: rotate(-2deg);}
+  90% {transform: rotate(4deg);}
+  95% {transform: rotate(-4deg);}
+  100% {transform: rotate(0deg);}
 }
