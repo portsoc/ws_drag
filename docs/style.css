@@ -73,22 +73,27 @@ main {
   padding: 1vmin;
   border-radius: 0.5vmin;
   border: solid black thin;
-  box-shadow: 1vmin 1vmin 1vmin black;
+  box-shadow: 0 1vmin 2vmin hsl(0,0%,50%);
   width: 55%;
   height: 54%;
-  animation: hereiam 3s ease;
+  animation: hereiam 1s ease, sparkle 1s linear;
+  background: #FFA;
 }
 
 input {
 	margin-right: 0.5em;
 }
 
-
 @keyframes hereiam {
-  75% {transform: rotate(0deg);}
-  80% {transform: rotate(2deg);}
-  85% {transform: rotate(-2deg);}
-  90% {transform: rotate(4deg);}
-  95% {transform: rotate(-4deg);}
+  0% {transform: rotate(0deg) scale(1);}
+  20% {transform: rotate(2deg);}
+  40% {transform: rotate(-2deg) scale(1.1);}
+  60% {transform: rotate(4deg);}
+  80% {transform: rotate(-4deg);}
   100% {transform: rotate(0deg);}
+}
+
+@keyframes sparkle {
+  0% {  filter: hue-rotate(0deg); }
+  100% {  filter: hue-rotate(360deg); }
 }
