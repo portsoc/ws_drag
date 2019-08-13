@@ -65,7 +65,9 @@ function createSwitches() {
   try {
     if (localStorage.eventexpo) {
       selected = JSON.parse(localStorage.eventexpo);
-    }
+    } else {
+		selected = {dragstart:true, dragend:true, drop :true};
+	}
   	for (const event of events) {
       let checked = selected[event] ? 'checked' : '';
   		 str+= `<label><input type="checkbox" ${checked} onclick="toggle('${event}')" id="x${event}"><p>${event} (<span id=x${event}count data-count=0>0</span>)</p></label>`
