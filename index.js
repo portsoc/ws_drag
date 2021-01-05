@@ -1,15 +1,14 @@
-const events = ['dragstart', 'drag', 'dragenter', 'dragleave', 'dragover', 'drop', 'dragend'];
+const dragEvents = ['dragstart', 'drag', 'dragenter', 'dragleave', 'dragover', 'drop', 'dragend'];
 
 let sections;
 
 function addCell(parent, txt) {
   const td = document.createElement('td');
   td.textContent = txt;
-  parent.appendChild(td);
+  parent.append(td);
 }
 
-
-function feedback(event) {
+function handleAllDragEvents(event) {
   let received = '';
   const time = Date.now();
 
@@ -30,19 +29,21 @@ function feedback(event) {
     event.preventDefault();
   }
 
-  // now the actual feeding back
-  if (window['x' + event.type].checked) {
+  // report the actual event if the user has requested it
+  const eventTypeCheckBox = document.querySelector('#x' + event.type);
+  if (eventTypeCheckBox.checked) {
     const tr = document.createElement('tr');
-    window.fbk.insertBefore(tr, window.fbk.firstChild);
     addCell(tr, time);
     addCell(tr, event.type);
     addCell(tr, event.target.id);
     addCell(tr, event.currentTarget.id);
     addCell(tr, received);
+    document.querySelector('#feedback').prepend(tr);
 
-    // update counter
-    window['x' + event.type + 'count'].dataset.count++;
-    window['x' + event.type + 'count'].textContent = window['x' + event.type + 'count'].dataset.count;
+    // update event counter (in brackets next to each event name)
+    const counter = document.querySelector('#x' + event.type + 'count');
+    counter.dataset.count++;
+    counter.textContent = window['x' + event.type + 'count'].dataset.count;
   }
 }
 
@@ -63,28 +64,28 @@ function createSwitches() {
     } else {
       selected = { dragstart: true, dragend: true, drop: true };
     }
-    for (const event of events) {
+    for (const event of dragEvents) {
       const checked = selected[event] ? 'checked' : '';
       str += `<label><input type="checkbox" ${checked} onclick="toggle('${event}')" id="x${event}"><p>${event} (<span id=x${event}count data-count=0>0</span>)</p></label>`;
     }
   } catch (e) {
     str = "<p class=error>Hmmmm.  <code>localStorage</code> could not be accessed.  If you're on Safari, set <em>'Disable local file restrictions'</em> in the <em>Develop</em> menu to fix this security feature.</p>";
   }
-  window.switches.innerHTML += str;
+  document.querySelector('#switches').innerHTML += str;
 }
 
 function prep() {
   sections = document.getElementsByTagName('section');
   for (const section of sections) {
-    for (const event of events) {
-      section.addEventListener(event, feedback);
+    for (const event of dragEvents) {
+      section.addEventListener(event, handleAllDragEvents);
     }
   }
   const dragme = document.createElement('p');
   dragme.id = 'dragme';
   dragme.draggable = true;
   dragme.textContent = 'Drag me!!';
-  sections[0].appendChild(dragme);
+  sections[0].append(dragme);
   createSwitches();
 }
 
