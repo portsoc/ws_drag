@@ -62,6 +62,7 @@ main {
 #switches {
   grid-area: switches;
   padding: 1em;
+  font-size: 2vmin;
 }
 
 #switches .error {
@@ -71,6 +72,15 @@ main {
 
 #switches label {
 	display: flex;
+  border: solid black thin;
+  background: #CCC;
+  cursor: pointer;
+  border-radius: 0.25vmin;
+  margin-bottom: 0.25vmin;
+  padding: 0.25em;
+}
+#switches label:hover {
+  background: #DDD;
 }
 
 #dragme {
@@ -83,10 +93,21 @@ main {
   height: 54%;
   animation: hereiam 1s ease, sparkle 1s linear;
   background: #FFA;
+  cursor: grab;
+}
+
+td {
+  animation: pulse 1s ease;
 }
 
 input {
 	margin-right: 0.5em;
+}
+
+
+@keyframes pulse {
+  0% {background: #54d4c6;}
+  100% {background: white;}
 }
 
 @keyframes hereiam {

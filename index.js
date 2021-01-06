@@ -38,7 +38,8 @@ function handleAllDragEvents(event) {
     addCell(tr, event.target.id);
     addCell(tr, event.currentTarget.id);
     addCell(tr, received);
-    document.querySelector('#feedback').prepend(tr);
+    document.querySelector('#feedback').append(tr);
+    tr.scrollIntoView({ smooth: true });
 
     // update event counter (in brackets next to each event name)
     const counter = document.querySelector('#x' + event.type + 'count');
