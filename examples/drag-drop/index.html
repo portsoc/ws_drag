@@ -27,7 +27,8 @@
 
   function dropHandler(e) {
     const data = e.dataTransfer.getData("text/plain");
-    console.log("drop " + data);
+    const difference = `Dragged for ${Date.now() - data}ms`;
+    document.querySelector("#fbk").textContent = difference;
   }
 
   function prep() {
@@ -44,3 +45,4 @@
 
 <div id=dragme draggable=true>Dragme!</div>
 <div id=drophere>drop here</div>
+<p id=fbk></p>
