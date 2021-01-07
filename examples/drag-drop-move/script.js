@@ -10,24 +10,11 @@ function dragOverHandler(e) {
 function dropHandler(e) {
   const data = e.dataTransfer.getData('text/plain');
   const dragged = document.getElementById(data);
-  e.target.append(dragged);
+  e.currentTarget.append(dragged);
 }
 
-function prep() {
-  const dropzones = document.querySelectorAll('.dropzone');
-  for (const dropzone of dropzones) {
-    dropzone.addEventListener('dragover', dragOverHandler);
-    dropzone.addEventListener('drop', dropHandler);
-  }
-
-  for (let i = 1; i <= 10; i++) {
-    const div = document.createElement('div');
-    div.textContent = `Drag me! #${i}`;
-    div.draggable = true;
-    div.id = 'div' + i;
-    div.addEventListener('dragstart', dragStartHandler);
-    dropzones[0].append(div);
-  }
+const dropzones = document.querySelectorAll('.dropzone');
+for (const dropzone of dropzones) {
+  dropzone.addEventListener('dragover', dragOverHandler);
+  dropzone.addEventListener('drop', dropHandler);
 }
-
-window.addEventListener('load', prep);
