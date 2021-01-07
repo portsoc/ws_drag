@@ -42,7 +42,8 @@ window.addEventListener('load', prep);
 
 <p>This is a normal paragraph, it can't be dragged.</p>
 <p><a href=http://example.org>This is a URL for dragging (because unlike normal text URLs are draggable by default).<a></p>
-<p>Images can normally be dragged too (because people like to copy images by dragging them) so whilst this paragraph is not draggable, this image <em>is</em> <img src=logo.svg alt="A uni logo for dragging."></p>
+<p>On the desktop images can normally be dragged too (because people like to copy images by dragging them) so whilst this paragraph is not draggable, this image <em>is</em> <img src=logo.svg alt="A uni logo for dragging."></p>
+<p>This image also has the draggable attribute set. <img draggable=true src=logo.svg alt="A uni logo for dragging."></p>
 <p draggable=true id=example>Drag me!  This paragraph can be dragged because its <code>draggable</code> attribute is <code>true</code>.</p>
 <p draggable=true id=dragme>Drag me!  This paragraph goes a step further an the dragstart event is responded to.</p>
 
