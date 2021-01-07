@@ -18,3 +18,8 @@ for (const dropzone of dropzones) {
   dropzone.addEventListener('dragover', dragOverHandler);
   dropzone.addEventListener('drop', dropHandler);
 }
+
+const divs = document.querySelectorAll('div');
+for (const div of divs) {
+  div.addEventListener('dragstart', dragStartHandler);
+}
