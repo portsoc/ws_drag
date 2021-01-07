@@ -12,4 +12,4 @@ Try it: https://portsoc.github.io/ws_drag/
 * Try dragging-in content from a word processor.
 
 ## Examples
-[Several examples](examples/) of basic drag and drop programs.
+[Several examples](https://portsoc.github.io/ws_drag/examples/) of basic drag and drop programs.
